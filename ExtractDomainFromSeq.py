@@ -1,12 +1,15 @@
 import re
 
+# Input information before run
 fileFasta = "Australasica_NLR.fasta"
 fileExtract = "Aus_TIRLRR.txt"
+# Save file
 saveExtract = True
 fileOutputExtract = "OutputExtract.txt"
 saveFasta = True
 fileOutputFasta = "OutputFasta.txt"
 
+#Main script
 fileExtract = open(fileExtract, 'r').readlines()
 gene = {}
 for line in fileExtract:
