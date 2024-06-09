@@ -44,6 +44,8 @@ for line in fileExtract:
             if loc1 != "":
                 end = int(loc1[1:])
                 loc1 = loc1[0]
+            else:
+                end = len(temp)
             if start == end:
                 if loc0 + loc1 == "==":
                     continue
