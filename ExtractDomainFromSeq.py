@@ -1,15 +1,40 @@
 import re
 
+# function
+
+
+def Gap(letter: str, begin: int, end: int):
+    """
+    Create gap letters.\n
+    For example: from 5 to 10 create gap with -\n
+    Gap('-', 5, 10) -> "------"
+    """
+    gap = ""
+    for i in range(begin - 1, end):
+        gap += letter
+    return gap
+
+
+def Subseq(sequence: str, begin: int, end: int):
+    '''
+    Get the sub-sequence from 'begin' to 'end'.\n
+    Example: trim seq A from 5 to 10.\n
+    Subseq(seq, 5, 10) -> "ATCCTT"
+    '''
+    return sequence[begin - 1, end]
+
+
 # Input information before run
 fileFasta = "Australasica_NLR.fasta"
 fileExtract = "Aus_TIRLRR.txt"
+gap_letter = "X"
 # Save file
 saveExtract = True
 fileOutputExtract = "OutputExtract.txt"
 saveFasta = True
 fileOutputFasta = "OutputFasta.txt"
 
-#Main script
+# Main script
 fileExtract = open(fileExtract, 'r').readlines()
 gene = {}
 for line in fileExtract:
@@ -113,8 +138,20 @@ for line in fileFasta:
         try:
             if name in gene.keys():
                 subseq = []
-                for each in gene[name]:
-                    subseq.append(line[each[0]+1:each[1]+2])
+                for i in range(len(gene[name])+1):
+                    try:
+                        if not subseq:
+                            subseq.append(
+                                Gap(gap_letter, 1, gene[name][i][0] - 1))
+                        else:
+                            subseq.append(
+                                Gap(gap_letter, gene[name][i - 1][1] + 1,
+                                    gene[name][i][0] - 1))
+                        subseq.append(Subseq(line, gene[name][i][0],
+                                             gene[name][i][1]))
+                    except IndexError:
+                        subseq.append(Gap(gap_letter, gene[name][i - 1][1] + 1,
+                                          len(line)))
                 geneFasta[name] = "".join(subseq)
             else:
                 print(f"{name} was not found")
