@@ -24,7 +24,10 @@ def Subseq(sequence: str, begin: int, end: int):
     Example: trim seq A from 5 to 10.\n
     Subseq(seq, 5, 10) -> "ATCCTT"
     '''
-    return sequence[begin - 1, end]
+    output = ""
+    for i in range(begin - 1, end)
+        output += sequence[i]
+    return output
 
 
 def CombineDomain(fileExtract: str, fileOutputExtract: str = None) -> dict:
