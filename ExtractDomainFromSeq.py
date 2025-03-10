@@ -1,5 +1,5 @@
 # Author: Michael Do (saikizu)
-# File purpose: Domain and Sequence work
+# File purpose: Combine Domain and Sequence work
 # Package: DoBioPython
 # Date: 10-Jun-2024
 
